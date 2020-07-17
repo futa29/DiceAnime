@@ -77,10 +77,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void setMusic(){
         if(setMusicNo == R.id.menu_sound1) {
-
-
+            //音楽再生部品に[disc1.mp3]ファイルをセットする
             mediaPlayer = MediaPlayer.create(this, R.raw.dice1);
         }else{
+            //音楽再生部品に[disc.mp3]ファイルをセットする
             mediaPlayer = MediaPlayer.create(this,R.raw.dice2);
         }
     }
@@ -143,21 +143,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
-            case R.id.menu_black:
+            case R.id.menu_black:     //メニューで「ブラック」をタッチした場合
                 layout.setBackgroundColor(Color.BLACK);
                 textDicePip.setTextColor(Color.WHITE);
                 dice_result.setTextColor(Color.WHITE);
                 break;
-            case R.id.menu_white:
+            case R.id.menu_white:     //メニューで「ホワイト」をタッチした場合
                 layout.setBackgroundColor(Color.WHITE);
                 textDicePip.setTextColor(Color.BLACK);
                 dice_result.setTextColor(Color.BLACK);
                 break;
-            case R.id.menu_sound1:
+            case R.id.menu_sound1:    //メニューで「効果音1」をタッチした場合
                 setMusicNo = R.id.menu_sound1;
                 setMusic();
                 break;
-            case R.id.menu_sound2:
+            case R.id.menu_sound2:    //メニューで「効果音2」をタッチした場合
                 setMusicNo = R.id.menu_sound2;
                 setMusic();
                 break;
