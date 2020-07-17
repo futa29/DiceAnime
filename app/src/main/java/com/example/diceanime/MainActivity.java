@@ -1,11 +1,15 @@
 package com.example.diceanime;
 
+import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import java.util.Random;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
     //アニメーションを表示させる部品
     private AnimationDrawable diceAnimation;
 
+    private ConstraintLayout layout;
+
+    private int setMusicNo;
+
+    //結果を表示させるテキスト
     private TextView dice_result;
 
     /*
@@ -67,7 +76,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setMusic(){
-        mediaPlayer = MediaPlayer.create(this,R.raw.dice1);
+        if(setMusicNo == R.id.menu_sound1) {
+
+
+            mediaPlayer = MediaPlayer.create(this, R.raw.dice1);
+        }else{
+            mediaPlayer = MediaPlayer.create(this,R.raw.dice2);
+        }
     }
 
     //サイコロのアニメーション処理
@@ -117,6 +132,39 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onTouchEvent(event);
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.menu_black:
+                layout.setBackgroundColor(Color.BLACK);
+                textDicePip.setTextColor(Color.WHITE);
+                dice_result.setTextColor(Color.WHITE);
+                break;
+            case R.id.menu_white:
+                layout.setBackgroundColor(Color.WHITE);
+                textDicePip.setTextColor(Color.BLACK);
+                dice_result.setTextColor(Color.BLACK);
+                break;
+            case R.id.menu_sound1:
+                setMusicNo = R.id.menu_sound1;
+                setMusic();
+                break;
+            case R.id.menu_sound2:
+                setMusicNo = R.id.menu_sound2;
+                setMusic();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -143,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
         //レイアウトXMLファイル上で作成したImageView部品のIDを指定する
         imageView = (ImageView)findViewById(R.id.imageView);
 
-
+        setMusicNo = R.id.menu_sound1;
 
         //音楽再生部品を生成するメソッドを呼び出す
         setMusic();
@@ -151,5 +199,8 @@ public class MainActivity extends AppCompatActivity {
         //起動時のサイコロは止まらせておく
         diceNo = DICE_STOP;
 
+
+        layout = (ConstraintLayout) findViewById(R.id.mainLayout);
+//213扉　F10 58番
     }
 }

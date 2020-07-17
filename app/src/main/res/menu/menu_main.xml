@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="背景色変更">
+        <menu>
+            <item android:id="@+id/menu_black" android:title="ブラック"/>
+            <item android:id="@+id/menu_white" android:title="ホワイト"/>
+        </menu>
+    </item>
+    <item android:title="効果音変更">
+        <menu>
+            <item android:id="@+id/menu_sound1" android:title="効果音1"/>
+            <item android:id="@+id/menu_sound2" android:title="効果音2"/>
+        </menu>
+    </item>
+</menu>
